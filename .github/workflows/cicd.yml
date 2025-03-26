@@ -49,7 +49,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/flasktest-app:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/flasktest-app:latest  # ✅ Correct format
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}  # ✅ Now it works correctly!
