@@ -20,15 +20,14 @@ jobs:
         python-version: '3.9'
     
     - name: Install dependencies
-      run: 
-        pip install -r requirements.txt
+      run: pip install -r requirements.txt
     
     - name: Run tests
       run: pytest
 
   build-and-push-image:
     needs: build-and-test
-    runs-on: ubuntu-latest  # Fixed OS name
+    runs-on: ubuntu-latest  
 
     steps:
     - name: Checkout the code
@@ -44,11 +43,12 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     
     - name: Build and push the image
-      uses: docker/build-push-action@v2
+      id: docker_build  # ✅ Added missing ID
+      uses: docker/build-push-action@v5  # ✅ Upgraded to latest version
       with:
         context: .
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/flasktest-app:latest
 
     - name: Image digest
-      run: echo ${{ steps.docker_build.outputs.digest }}  # Fixed reference
+      run: echo ${{ steps.docker_build.outputs.digest }}  # ✅ Now it works correctly!
