@@ -12,7 +12,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker Image
-      run: docker build . --file Dockerfile --tag flasktest-app:date +%s
+      run: docker build . --file Dockerfile --tag flasktest-app:$(date +%s)
+
   build-and-test:
     runs-on: ubuntu-latest
 
