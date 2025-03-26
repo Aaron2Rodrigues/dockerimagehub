@@ -15,6 +15,7 @@ jobs:
       run: docker build . --file Dockerfile --tag flasktest-app:$(date +%s)
 
   build-and-test:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
