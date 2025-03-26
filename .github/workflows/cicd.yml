@@ -47,6 +47,7 @@ jobs:
       uses: docker/build-push-action@v5  # ✅ Upgraded to latest version
       with:
         context: .
+        file: ./dockerfile
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/flasktest-app:latest
 
